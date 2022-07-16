@@ -1,0 +1,75 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>GuGuDan</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src = "https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    class GuGuDan extends React.Component {
+      input;
+
+      constructor(props) {
+        super(props);
+        this.state = {
+          number1: Math.floor(Math.random() * 9),
+          number2: Math.floor(Math.random() * 9),
+          value: '',
+          result: '',
+        };
+      }
+
+      onsubmit = (e) => {
+        e.preventDefault();
+        if(this.state.number1 * this.state.number2 === Number(this.state.value)) {
+          this.setState((prevState) => {
+            return {
+              number1: Math.floor(Math.random() * 9),
+              number2: Math.floor(Math.random() * 9),
+              value: '',
+              result: `정답! ${prevState.number1} X ${prevState.number2} = ${prevState.value}`
+            }
+          })
+        }
+        else {
+          this.setState({
+            value: '',
+            result: '땡!', 
+          })
+        }
+        this.input.focus();
+      }
+
+      onchange = (e) => {
+        this.setState({value: e.target.value});
+      }
+
+      onRef = (c) => {this.input = c;}
+
+      render() {
+        return (
+          <React.Fragment>
+            <div>{this.state.number1}곱하기{this.state.number2}는?</div>
+            <form onSubmit = {this.onsubmit}>
+              <input ref = {this.onRef} type="number" value = {this.state.value}onChange = {this.onchange} />
+              <button>입력!</button>  
+            </form>
+            <div>{this.state.result}</div>
+            
+          </React.Fragment>
+        );
+      }
+    }
+  </script>
+
+  <script type="text/babel">
+    ReactDOM.createRoot(document.querySelector('#root')).render(<GuGuDan/>);
+  </script>
+</body>
+</html>
