@@ -1,12 +1,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Practice</title>
 </head>
 <body>
   <div id = "root"></div>
   <script>
-    let test = document.createElement('button', {onClick: () => {console.log('123')}});
+    let test = document.createElement('button', onclick = () => console.log('123'));
     document.querySelector('#root').append(test,1234);
   </script>
 </body>
