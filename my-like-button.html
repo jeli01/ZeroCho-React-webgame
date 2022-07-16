@@ -27,10 +27,25 @@
         );
       }
     }
+
+    function MyFirstReactApp2() {
+      let [liked,setliked] = React.useState(false);
+
+      if(liked) {
+        return 'hahaha hihihi';
+      }
+
+      return (
+        <button onClick = {() => {setliked(true)}}>
+          Like
+        </button>
+      )
+    }
   </script>
    
   <script type="text/babel">
-    ReactDOM.createRoot(document.querySelector('#root')).render(<MyFirstComponent/>);
+    // ReactDOM.createRoot(document.querySelector('#root')).render(<MyFirstComponent/>);
+    ReactDOM.createRoot(document.querySelector('#root')).render(<MyFirstReactApp2/>);
   </script>
 </body>
 </html>
