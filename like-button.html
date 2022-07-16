@@ -34,10 +34,22 @@
           // 화면!
         }
       }
+
+      function LikeButton2() {   // 함수형 컴포넌트 
+        const [liked, setLiked] = React.useState(false);
+        if (liked) {
+          return 'You liked this';
+        }
+        return (
+        <button onClick = {() => { setLiked(true); }}> Like
+          </button>
+        );
+      }
     </script>
+
     <script type = text/babel>
       // ReactDOM.render(<LikeButton /> , document.querySelector('#root') ); // React 17버전
-      ReactDOM.createRoot(document.querySelector('#root')).render(<LikeButton />); // React 18버전 코드
+      ReactDOM.createRoot(document.querySelector('#root')).render(<LikeButton2 />); // React 18버전 코드
     </script>
   </body>
 </html>
