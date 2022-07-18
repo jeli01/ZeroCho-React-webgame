@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   name: 'wordrelay-setting',
@@ -14,13 +15,22 @@ module.exports = {
   module: {
     rules: [{
       test: /\.jsx?/,
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env', '@babel/preset-react'],
+      loader: 'babel-loader',  // 바벨을 적용하겠다.
+      options: {               // 바벨의 옵션을 넣자.
+        presets: ['@babel/preset-env', {
+          targets: {
+            browsers: ['> 1% in KR'],
+          },
+          debug: true,   // 개발용
+        },  '@babel/preset-react'],
         plugins: ['@babel/plugin-proposal-class-properties'],
       }
     }],
   },
+
+  plugins: [
+    new webpack.LoaderOptionsPlugin({ debug: true}),
+  ],
 
   output: {
     path: path.join(__dirname, 'dist'),
