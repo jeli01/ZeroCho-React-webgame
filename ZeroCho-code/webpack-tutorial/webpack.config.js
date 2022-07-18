@@ -17,12 +17,13 @@ module.exports = {
       test: /\.jsx?/,
       loader: 'babel-loader',  // 바벨을 적용하겠다.
       options: {               // 바벨의 옵션을 넣자.
-        presets: ['@babel/preset-env', {
+        presets: [
+          ['@babel/preset-env', {
           targets: {
             browsers: ['> 1% in KR'],
           },
           debug: true,   // 개발용
-        },  '@babel/preset-react'],
+        }],  '@babel/preset-react'],
         plugins: ['@babel/plugin-proposal-class-properties'],
       }
     }],
