@@ -57,15 +57,15 @@ const WordRelay2 = function() {
   
   const onSubmitForm = (e) => {
     e.preventDefault();
-    if(word[word.length -1] === e.target.children.word[0]) {
+    if(word[word.length -1] === e.target.children.word.value[0]) {
       setResult('딩동댕');
-      e.target.children.word = '';
+      e.target.children.word.value = '';
       setWord(e.target.children.word);
       inputRef.current.focus();
     }
     else {
       setResult('땡');
-      e.target.children.word = '';
+      e.target.children.word.value = '';
       inputRef.current.focus();
     }
   };
@@ -82,6 +82,7 @@ const WordRelay2 = function() {
         <input id="word" ref={inputRef} />
         <button>입력!</button>
       </form>
+      <div>{result}</div>
     </>
   )
 
