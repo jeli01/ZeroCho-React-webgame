@@ -1,4 +1,4 @@
-import React, { Component, useRef, useState, useCallback} from 'react';
+import React, { Component, useRef, useState } from 'react';
 import Try from "./Try";
 
 const getNumbers = () => {
@@ -35,7 +35,7 @@ class NumberBaseball2 extends Component {
         answer: getNumbers(),
         tries: [],
       });
-      this.inputRef.current.focus();
+      this.inputRef.focus();
     } else { // 답 틀렸으면
       const answerArray = value.split('').map((v) => parseInt(v));
       let strike = 0;
@@ -50,7 +50,7 @@ class NumberBaseball2 extends Component {
           answer: getNumbers(),
           tries: [],
         });
-        this.inputRef.current.focus();
+        this.inputRef.focus();
       } else {
         for (let i = 0; i < 4; i += 1) {
           if (answerArray[i] === answer[i]) {
@@ -65,7 +65,7 @@ class NumberBaseball2 extends Component {
             value: '',
           };
         });
-        this.inputRef.current.focus();
+        this.inputRef.focus();
       }
     }
   };
@@ -77,7 +77,8 @@ class NumberBaseball2 extends Component {
     });
   };
 
-  inputRef = createRef(); // this.inputRef
+  inputRefFunc = (c) => {this.inputRef = c}; // this.inputRef
+  inputRef;
 
   render() {
     const { result, value, tries } = this.state;
@@ -85,7 +86,7 @@ class NumberBaseball2 extends Component {
       <>
         <h1>{result}</h1>
         <form onSubmit={this.onSubmitForm}>
-          <input ref={this.inputRef} maxLength={4} value={value} onChange={this.onChangeInput} />
+          <input ref={this.inputRefFunc} maxLength={4} value={value} onChange={this.onChangeInput} />
         </form>
         <div>시도: {tries.length}</div>
         <ul>
@@ -101,13 +102,13 @@ class NumberBaseball2 extends Component {
 }
 
 const NumberBaseball = () => {
-  const [answer, setAnswer] = useState(getNumbers());
+  const [answer, setAnswer] = useState(getNumbers);
   const [value, setValue] = useState('');
   const [result, setResult] = useState('');
   const [tries, setTries] = useState([]);
   const inputEl = useRef(null);
 
-  const onSubmitForm = useCallback((e) => {
+  const onSubmitForm = ((e) => {
     e.preventDefault();
     if (value === answer.join('')) {
       setTries((t) => ([
@@ -158,7 +159,7 @@ const NumberBaseball = () => {
     }
   }, [value, answer]);
 
-  const onChangeInput = useCallback((e) => setValue(e.target.value), []);
+  const onChangeInput = ((e) => setValue(e.target.value), []);
 
   return (
     <>
@@ -182,4 +183,4 @@ const NumberBaseball = () => {
   );
 };
 
-export default NumberBaseball;
+export default NumberBaseball2;

@@ -1,4 +1,4 @@
-import React, { Component, memo } from 'react';
+import React, { Component } from 'react';
 
 class Try2 extends Component {
   render() {
@@ -12,7 +12,7 @@ class Try2 extends Component {
   }
 }
 
-const Try = memo(({tryInfo}) => {
+const Try = (({tryInfo}) => {
   return (
     <li>
       <div>{tryInfo.try}</div>
