@@ -4,10 +4,38 @@
   <title>Practice</title>
 </head>
 <body>
-  <div id = "root"></div>
   <script>
-    let test = document.createElement('button', onclick = () => console.log('123'));
-    document.querySelector('#root').append(test,1234);
-  </script>
+    var hi = 0;
+    var counter = function() {
+    var count = 0;
+    function changeCount(number) {
+      count += number;
+    }
+    return {
+      increase: function() {
+        changeCount(1);
+      },
+      decrease: function() {
+        changeCount(-1);
+      },
+      show: function() {
+        console.log(count);
+      },
+      increaseHi: function() {
+        hi += 1;
+      },
+    }
+  };
+  var counterClosure = counter();
+  var counterClosure2 = counter();
+  counterClosure.increase();
+  counterClosure.show(); // 1
+  counterClosure.decrease();
+  counterClosure.show(); // 0
+  counterClosure.increaseHi();
+  counterClosure2.increaseHi();
+
+  console.log('Hi = ',hi);
+</script>
 </body>
 </html>
